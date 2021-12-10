@@ -1,0 +1,23 @@
+﻿@using System.Drawing
+@model FileSys.Models.FilesModel[]
+
+@{
+    ViewData["Title"] = "WExploere";
+    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div align="left">
+    @foreach (var filesmodel in Model)
+    {
+        <ul>
+            <image src=@filesmodel.Icon></image><a href="/@filesmodel.path">@filesmodel.name</a>
+        </ul>
+    }
+</div>
+</body>
+</html>
