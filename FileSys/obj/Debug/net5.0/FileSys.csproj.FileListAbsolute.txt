@@ -44,3 +44,5 @@ C:\Users\n.chapidze\nch\FileSystem\FileSys\FileSys\bin\Debug\net5.0\System.Drawi
 C:\Users\n.chapidze\nch\FileSystem\FileSys\FileSys\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 C:\Users\n.chapidze\nch\FileSystem\FileSys\FileSys\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
 C:\Users\n.chapidze\nch\FileSystem\FileSys\FileSys\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\n.chapidze\nch\FileSystem\FileSys\FileSys\obj\Debug\net5.0\Razor\Views\Path\displayImageView.cshtml.g.cs
+C:\Users\n.chapidze\nch\FileSystem\FileSys\FileSys\obj\Debug\net5.0\Razor\Views\ImageGenerator\ImageGeneratoActionResult.cshtml.g.cs

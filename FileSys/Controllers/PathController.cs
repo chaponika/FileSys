@@ -11,15 +11,15 @@ namespace FileSys.Controllers
 {
     public class PathController : Controller
     {
-        private static readonly string[] imageFileTypesArray = new string[]{".bmp",".jpg",".jpeg",".tif", ".tiff"};
+        private static readonly string[] imageFileTypesArray = new string[]{".bmp",".jpg",".jpeg",".tif", ".tiff",".png"};
         private static readonly HashSet<string> imageTypes = new HashSet<string>(imageFileTypesArray);
 
         [HttpGet("{*path}")]
         public IActionResult displayFilesView(string path)
         {
-            if (imageTypes.Contains(path.Substring(path.LastIndexOf("."))))
+            if (path.LastIndexOf(".") != -1 && imageTypes.Contains(path.Substring(path.LastIndexOf("."))))
             {
-                return displayImageView(path);
+                return RedirectToAction("DisplayImageView",new{path = path});
             }
 
             try
@@ -37,7 +37,7 @@ namespace FileSys.Controllers
                     temp.path = dirInfos[i].FullName;
                     filesmodels[i] = temp;*/
                     filesmodels[i] = new FilesModel(dirInfos, i);
-                    filesmodels[i].Icon =  (Image)System.Drawing.Icon.ExtractAssociatedIcon(@"Properties\Images\folder-icon.png").ToBitmap();
+                    filesmodels[i].Icon =  @"wwwroot\Images\folder-icon.png";
                 }
 
                 string[] filePaths = Directory.GetFiles(path);
@@ -50,37 +50,48 @@ namespace FileSys.Controllers
                     filesmodels[dirInfos.Length+i].name = file.Name;
                     filesmodels[dirInfos.Length+i].path = file.FullName;
                     filesmodels[dirInfos.Length+i].isFolder = false;
-                    filesmodels[dirInfos.Length+i].Icon = (Image)iconForFile.ToBitmap();
                     Image image = iconForFile.ToBitmap();
                     
                     if (filesmodels[dirInfos.Length+i].path.Substring(filesmodels[dirInfos.Length+i].path.LastIndexOf(".")).Equals(".txt"))
                     {
-                        filesmodels[dirInfos.Length+i].Icon = (Image)System.Drawing.Icon.ExtractAssociatedIcon(@"Properties\Images\txt-file-icon.png").ToBitmap();
+                        filesmodels[dirInfos.Length+i].Icon = @"wwwroot\Images\txt-file-icon.png";
+                    }else if (imageTypes.Contains(filesmodels[dirInfos.Length+i].path.Substring(filesmodels[dirInfos.Length+i].path.LastIndexOf("."))))
+                    {
+                        filesmodels[dirInfos.Length+i].Icon = @"wwwroot\Images\txt-file-icon.png";
+                    }
+                    else
+                    {
+                        filesmodels[dirInfos.Length+i].Icon = "favicon.ico";
                     }
 
-                    if (imageTypes.Contains(filesmodels[dirInfos.Length+i].path.Substring(filesmodels[dirInfos.Length+i].path.LastIndexOf("."))))
-                    {
-                        filesmodels[dirInfos.Length+i].Icon = (Image)System.Drawing.Icon.ExtractAssociatedIcon(@"Properties\Images\txt-file-icon.png").ToBitmap();
-                    }
                     //Console.WriteLine(filesmodels[dirInfos.Length+i].name);
                 }
-                
                 Console.WriteLine("-----------");
                 return View(filesmodels);
 
             }
             //UnauthorizedAccessException
-            catch (Exception e)
+            catch (UnauthorizedAccessException e)
             {
                 Console.WriteLine("you shall not pass here");
             }
-            
             return displayFilesView(path.Substring(0,path.LastIndexOf(@"/")));
         }
 
-        public IActionResult displayImageView(string path)
+        [HttpGet]
+        public FileContentResult imageGenerate(string filePath)
         {
-            return View(path);
+            System.Drawing.Icon iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(filePath);
+            Bitmap b = iconForFile.ToBitmap();
+            ImageConverter converter = new ImageConverter();
+            return new FileContentResult((byte[])converter.ConvertTo(b, typeof(byte[])), "image/png");
+        }
+
+        [HttpGet]
+        public IActionResult DisplayImageView(string path)
+        {
+            ViewBag.Imagepath = path;
+            return View();
         }
     }
 }
