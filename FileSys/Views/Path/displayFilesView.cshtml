@@ -15,7 +15,7 @@
     @foreach (var filesmodel in Model)
     {
         <ul>
-            <image src=@filesmodel.Icon></image><a href="/@filesmodel.path">@filesmodel.name</a>
+            <img src="@Url.Action("imageGenerate", "Path", new {s = @filesmodel.path}) %>"/><a href="/@filesmodel.path">@filesmodel.name</a>
         </ul>
     }
 </div>

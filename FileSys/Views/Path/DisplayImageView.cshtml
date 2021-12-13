@@ -1,0 +1,19 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Asp.Net MVC Display image from byte array";  
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+      <img src="@Url.Action("ImageGeneratoActionResult", "ImageGenerator", new {@ViewBag.Imagepath})" />
+</div>
+</body>
+</html>

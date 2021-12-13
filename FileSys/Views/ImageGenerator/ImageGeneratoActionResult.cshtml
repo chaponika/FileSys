@@ -1,6 +1,7 @@
 ﻿@model dynamic
 
 @{
+    ViewBag.Title = "Asp.Net MVC Display image from byte array";  
     Layout = null;
 }
 
@@ -12,7 +13,7 @@
 </head>
 <body>
 <div>
-      <img src=@Model><img/>
+      <img src="@ViewBag.ImageData">  
 </div>
 </body>
 </html>

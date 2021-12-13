@@ -5,12 +5,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Pages" />
+      <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+      <PackageReference Include="System.Drawing.Icons" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-      <PackageReference Include="System.Drawing.Icons" Version="1.0.0" />
+      <None Include="wwwroot\Images\folder-icon.png" />
+      <None Include="wwwroot\Images\txt-file-icon.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pages" />
     </ItemGroup>
 
 </Project>

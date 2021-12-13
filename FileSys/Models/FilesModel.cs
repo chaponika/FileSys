@@ -13,7 +13,7 @@ namespace FileSys.Models
 
         public String name { get; set; }
 
-        public Image Icon { get; set; }
+        public string Icon { get; set; }
 
         public FilesModel()
         {
