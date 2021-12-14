@@ -15,7 +15,15 @@
     @foreach (var filesmodel in Model)
     {
         <ul>
-            <img src="@Url.Action("imageGenerate", "Path", new {s = @filesmodel.path}) %>"/><a href="/@filesmodel.path">@filesmodel.name</a>
+            @if (filesmodel.isFolder)
+                {
+                    <img src="~/Images/folder-icon.png" width="45" height="45" alt="">  
+                }
+            else
+            {
+                <img src="@Url.Action("imageGenerate", "Path", new {filePath = @filesmodel.path})" alt=""/>
+            }
+            <a href="/files/rezgs/@filesmodel.path">@filesmodel.name</a>
         </ul>
     }
 </div>

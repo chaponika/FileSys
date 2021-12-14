@@ -14,8 +14,4 @@
       <None Include="wwwroot\Images\txt-file-icon.png" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Pages" />
-    </ItemGroup>
-
 </Project>
