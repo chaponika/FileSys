@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FileSys.Controllers
 {
-    public class ImageGenerator : Controller
+    public class ImageGeneratorController : Controller
     {
         private static readonly string[] imageFileTypesArray = new string[]{".bmp",".jpg",".jpeg",".tif", ".tiff",".png"};
         private static readonly HashSet<string> imageTypes = new HashSet<string>(imageFileTypesArray);
